@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Register {
+  id           Int        @id @default(autoincrement())
+  username     String
+  discord_uuid String
+  message_uuid String?
+  point_type   point_type
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+enum point_type {
+  ENTRY
+  PAUSE_START
+  PAUSE_END
+  EXIT
+}
